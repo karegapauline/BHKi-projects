@@ -11,5 +11,9 @@ The OSS-BHKi survey report details findings from our community about their aware
 Read the full report here: <a href="https://github.com/karegapauline/BHKi-projects/blob/main/OSS-BHKi%20survey%20report.docx">OSS-BHKi survey report</a> 
 
 Reach out and let's collaborate:
-Email: bioinformaticshubofkenya@gmail.com
+Email us at: bioinformaticshubofkenya@gmail.com
 
+
+
+References
+Karega, P., Mwaura, D. K., Mwangi, K. W., Wanjiku, M., Landi, M., & Kibet, C. K. (2023). Building awareness and capacity of bioinformatics and open science skills in Kenya: a sensitize, train, hack, and collaborate model. Frontiers in research metrics and analytics, 8, 1070390. https://doi.org/10.3389/frma.2023.1070390
