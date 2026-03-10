@@ -1,4 +1,9 @@
 # BHKi-projects
+## Navigation Menu
+
+- [OSS Survey Report](./OSS-survey_report/README.md)
+- [Other Projects](#)
+
 BHKi is a grassroots bioinformatics and open science community based in Kenya. We promote collaboration, mentorship, and skill-sharing to bridge gaps in research, coding, and data analysis across life sciences.
 
 ---
