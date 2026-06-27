@@ -2,7 +2,7 @@
 
 **Bridging the gap between biological research and high-performance computing in East and West Africa.**
 
-This repository contains open training materials, templates, and tools developed through the HPC Co-Design project — a collaboration led by the [Bioinformatics Hub of Kenya (BHKi)](https://bhki.org) to improve access to and use of HPC resources across African research institutions.
+This repository contains open training materials, templates, and tools developed through the HPC Co-Design project — a collaboration led by the [Bioinformatics Hub of Kenya (BHKi)](https://www.bioinfohubke.com/) to improve access to and use of HPC resources across African research institutions.
 
 ---
 
