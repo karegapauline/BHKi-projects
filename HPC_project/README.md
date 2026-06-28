@@ -59,7 +59,7 @@ Teaches researchers how to translate their experimental design into a computatio
 
 A structured one-page document that travels with a project from initial request through completion. Designed to be filled in collaboratively — not a form to submit, but a conversation to have.
 
-→ [`templates/`](HPC_project/templates)
+→ [`templates/`](CRMP_template.docx)
 
 ---
 
