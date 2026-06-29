@@ -24,7 +24,7 @@ This project co-designs the tools, language, and training to fill that gap — w
 ```
 hpc-codesign-africa/
 ├── lessons/
-│   └── 01_resource-needs-assessment/   ← Carpentries-style lesson: estimating compute needs
+│   └── 01_resource-needs-assessment/   ← Carpentries-style lesson: estimating compute needs (no draft yet)
 ├── templates/
 │   └── computational-resource-plan/    ← DMP-style shared form for researchers + admins
 ├── data/
@@ -98,7 +98,7 @@ A full description of the project, methodology, and findings is available at: **
 
 | Output | Status |
 |---|---|
-| Lesson 1: Resource needs assessment | 🟡 Draft — open for review |
+| Lesson 1: Resource needs assessment | 🔴 Coming soon |
 | CRMP template | 🟡 Draft — open for review |
 | HPC systems data | 🟡 Partial — contributions welcome |
 | Literature review notebook | 🟢 Complete |
