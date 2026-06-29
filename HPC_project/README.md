@@ -137,6 +137,6 @@ All materials in this repository are shared under [CC BY 4.0](https://creativeco
 ## Contact
 
 **Pauline Karega** — BHKi, Kenya
-[GitHub](https://github.com/karegapauline) | [email TBC]
+[GitHub](https://github.com/karegapauline) | [bioinformaticshubofkenya@gmail.com]
 
 *This project is affiliated with the Bioinformatics Hub of Kenya (BHKi) and conducted in collaboration with partner institutions in East and West Africa.*
