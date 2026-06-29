@@ -11,7 +11,7 @@ This repository contains open training materials, templates, and tools developed
 High-performance computing infrastructure exists across Africa — but it is consistently underused. The barriers are not primarily technical. They are:
 
 - Researchers who do not know how to assess or articulate their computational needs
-- HPC administrators who cannot interpret vague, biology-heavy requests
+- HPC administrators who have resources but they are underutilized
 - No shared language between the two groups
 - Training curricula that jump from introductory to advanced, skipping the practical middle ground
 
@@ -47,7 +47,7 @@ hpc-codesign-africa/
 
 Teaches researchers how to translate their experimental design into a computational resource estimate — and teaches administrators what questions to ask. Covers:
 - The four dimensions of compute: CPU, RAM, storage, walltime
-- Four genomics workflow archetypes with full resource profiles (variant calling, RNA-seq, microbiome, genome assembly)
+- Some genomics workflow archetypes with full resource profiles (variant calling, RNA-seq, microbiome, genome assembly)
 - Exercises for mixed researcher–administrator audiences
 
 → [`lessons/01_resource-needs-assessment/`](lessons/01_resource-needs-assessment/)
@@ -57,7 +57,7 @@ Teaches researchers how to translate their experimental design into a computatio
 ### 📋 Template: Computational Resource Management Plan (CRMP)
 *A shared DMP-style form that bridges researcher needs and administrator allocation*
 
-A structured one-page document that travels with a project from initial request through completion. Designed to be filled in collaboratively — not a form to submit, but a conversation to have.
+A structured short document that travels with a project from initial request through completion. Designed to be filled in collaboratively by researcher and HPC administrator.
 
 → [`HPC_project/templates/CRMP_template.docx`](CRMP_template.docx)
 
@@ -115,6 +115,7 @@ We welcome contributions from HPC administrators, bioinformatics trainers, and r
 - **Review the lesson** — try it with your community and open an issue with feedback
 - **Adapt the CRMP** — if your institution has adapted the template, we would like to hear how
 - **Share your archetype** — if your workflow is not covered by the four archetypes in Lesson 1, consider contributing a new one
+- **Offer HPC space** - if you are an administrator, help us grow this community being the resource holder
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
