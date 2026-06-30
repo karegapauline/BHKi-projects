@@ -125,7 +125,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
 If you use these materials, please cite:
 
-> Karega P. et al. (2025). *HPC Co-Design for Africa: Training materials and tools.* Bioinformatics Hub of Kenya (BHKi). GitHub: https://github.com/[username]/hpc-codesign-africa
+> Karega P. et al. (2025). *HPC Co-Design for Africa: Training materials and tools.* Bioinformatics Hub of Kenya (BHKi). GitHub: https://github.com/karegapauline/BHKi-projects/HPC_project
 
 ---
 
