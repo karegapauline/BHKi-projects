@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BHKi Projects</title>
+  <meta name="description" content="Community-led bioinformatics and open science projects from the Bioinformatics Hub of Kenya." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Tokens ─────────────────────────────────────────────────────────── */
+    :root {
+      --teal:       #1A7A6E;
+      --teal-mid:   #22A08F;
+      --teal-light: #E6F4F2;
+      --teal-pale:  #F2FAF9;
+      --earth:      #C4783A;   /* warm accent — Africa soil */
+      --dark:       #111C1B;
+      --mid:        #3D5451;
+      --muted:      #6B8884;
+      --rule:       #D4E8E5;
+      --white:      #FFFFFF;
+      --bg:         #F8FFFE;
+
+      --display: 'DM Serif Display', Georgia, serif;
+      --body:    'Inter', system-ui, sans-serif;
+      --mono:    'JetBrains Mono', 'Courier New', monospace;
+
+      --radius: 6px;
+      --max:    1080px;
+    }
+
+    /* ── Reset ──────────────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; scroll-behavior: smooth; }
+    body {
+      font-family: var(--body);
+      background: var(--bg);
+      color: var(--dark);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    /* ── Layout helpers ─────────────────────────────────────────────────── */
+    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+
+    /* ── Nav ────────────────────────────────────────────────────────────── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--white);
+      border-bottom: 1px solid var(--rule);
+    }
+    .nav-inner {
+      max-width: var(--max); margin: 0 auto; padding: 0 24px;
+      height: 56px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-brand {
+      font-family: var(--display);
+      font-size: 1.15rem;
+      color: var(--teal);
+      display: flex; align-items: center; gap: 10px;
+    }
+    .nav-brand .dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--earth); flex-shrink: 0;
+    }
+    .nav-links { display: flex; gap: 28px; }
+    .nav-links a {
+      font-size: 0.875rem; font-weight: 500;
+      color: var(--mid);
+      transition: color 0.15s;
+    }
+    .nav-links a:hover { color: var(--teal); }
+
+    /* ── Hero ───────────────────────────────────────────────────────────── */
+    .hero {
+      background: var(--teal);
+      padding: 80px 24px 72px;
+      position: relative; overflow: hidden;
+    }
+    /* Subtle grid lines — map reference */
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none;
+    }
+    .hero-inner {
+      max-width: var(--max); margin: 0 auto;
+      position: relative; z-index: 1;
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: var(--mono); font-size: 0.75rem; font-weight: 500;
+      color: rgba(255,255,255,0.65);
+      letter-spacing: 0.08em; text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: block; width: 24px; height: 1px;
+      background: rgba(255,255,255,0.4);
+    }
+    .hero h1 {
+      font-family: var(--display);
+      font-size: clamp(2.2rem, 5vw, 3.6rem);
+      line-height: 1.1;
+      color: var(--white);
+      max-width: 680px;
+      margin-bottom: 20px;
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: rgba(255,255,255,0.75);
+    }
+    .hero-sub {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.8);
+      max-width: 520px;
+      line-height: 1.65;
+      margin-bottom: 36px;
+    }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 10px 20px; border-radius: var(--radius);
+      font-size: 0.875rem; font-weight: 600;
+      transition: all 0.15s; cursor: pointer; border: none;
+    }
+    .btn-white {
+      background: var(--white); color: var(--teal);
+    }
+    .btn-white:hover { background: var(--teal-light); }
+    .btn-outline {
+      background: transparent;
+      color: var(--white);
+      border: 1.5px solid rgba(255,255,255,0.4);
+    }
+    .btn-outline:hover { border-color: var(--white); background: rgba(255,255,255,0.08); }
+
+    /* ── Philosophy strip ───────────────────────────────────────────────── */
+    .philosophy {
+      background: var(--dark);
+      padding: 36px 24px;
+    }
+    .philosophy-inner {
+      max-width: var(--max); margin: 0 auto;
+      display: flex; align-items: center; gap: 20px;
+    }
+    .philosophy-mark {
+      font-family: var(--display); font-size: 3rem;
+      color: var(--teal-mid); flex-shrink: 0;
+      line-height: 1;
+    }
+    .philosophy-text {
+      font-size: 1rem; color: rgba(255,255,255,0.75);
+      line-height: 1.65;
+    }
+    .philosophy-text strong { color: var(--white); }
+
+    /* ── Section headers ────────────────────────────────────────────────── */
+    .section { padding: 72px 0; }
+    .section-header { margin-bottom: 48px; }
+    .section-label {
+      font-family: var(--mono); font-size: 0.72rem; font-weight: 500;
+      color: var(--teal); text-transform: uppercase; letter-spacing: 0.1em;
+      display: flex; align-items: center; gap: 8px;
+      margin-bottom: 10px;
+    }
+    .section-label::after {
+      content: '';
+      flex: 1; max-width: 40px; height: 1px;
+      background: var(--teal-mid);
+    }
+    .section-title {
+      font-family: var(--display); font-size: clamp(1.5rem, 3vw, 2.1rem);
+      color: var(--dark); line-height: 1.2;
+    }
+
+    /* ── Project cards ──────────────────────────────────────────────────── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(460px, 1fr));
+      gap: 24px;
+    }
+    .project-card {
+      background: var(--white);
+      border: 1px solid var(--rule);
+      border-radius: 10px;
+      overflow: hidden;
+      display: flex; flex-direction: column;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .project-card:hover {
+      box-shadow: 0 8px 32px rgba(26,122,110,0.12);
+      transform: translateY(-2px);
+    }
+    .card-band {
+      height: 5px;
+    }
+    .band-teal { background: var(--teal); }
+    .band-earth { background: var(--earth); }
+    .card-body { padding: 28px; flex: 1; display: flex; flex-direction: column; }
+    .card-tag {
+      display: inline-block;
+      font-family: var(--mono); font-size: 0.68rem; font-weight: 500;
+      color: var(--teal); background: var(--teal-light);
+      padding: 3px 10px; border-radius: 20px;
+      text-transform: uppercase; letter-spacing: 0.07em;
+      margin-bottom: 14px;
+    }
+    .card-tag.earth { color: var(--earth); background: #FDF2EA; }
+    .card-title {
+      font-family: var(--display); font-size: 1.25rem;
+      color: var(--dark); line-height: 1.25;
+      margin-bottom: 10px;
+    }
+    .card-desc {
+      font-size: 0.9rem; color: var(--mid);
+      line-height: 1.65; flex: 1;
+      margin-bottom: 20px;
+    }
+    .card-meta {
+      display: flex; gap: 16px; flex-wrap: wrap;
+      padding-top: 16px;
+      border-top: 1px solid var(--rule);
+      margin-bottom: 20px;
+    }
+    .meta-item {
+      font-size: 0.78rem; color: var(--muted);
+      display: flex; align-items: center; gap: 5px;
+    }
+    .meta-item svg { width: 13px; height: 13px; flex-shrink: 0; }
+    .card-status {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 0.75rem; font-weight: 600;
+      padding: 4px 10px; border-radius: 20px;
+      margin-bottom: 16px;
+    }
+    .status-active { color: #16803C; background: #DCFCE7; }
+    .status-progress { color: #92400E; background: #FEF3C7; }
+    .status-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: currentColor;
+    }
+    .card-links { display: flex; gap: 10px; flex-wrap: wrap; }
+    .card-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 0.8rem; font-weight: 600;
+      padding: 7px 14px; border-radius: var(--radius);
+      transition: all 0.15s;
+    }
+    .card-link-primary {
+      background: var(--teal); color: var(--white);
+    }
+    .card-link-primary:hover { background: #155F56; }
+    .card-link-secondary {
+      border: 1.5px solid var(--rule); color: var(--mid);
+    }
+    .card-link-secondary:hover { border-color: var(--teal); color: var(--teal); }
+    .card-link svg { width: 13px; height: 13px; }
+
+    /* ── Outputs section ────────────────────────────────────────────────── */
+    .outputs-section { background: var(--teal-pale); }
+    .outputs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 16px;
+    }
+    .output-item {
+      background: var(--white);
+      border: 1px solid var(--rule);
+      border-radius: var(--radius);
+      padding: 20px;
+      display: flex; align-items: flex-start; gap: 14px;
+    }
+    .output-icon {
+      width: 36px; height: 36px; border-radius: 8px;
+      background: var(--teal-light);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .output-icon svg { width: 18px; height: 18px; color: var(--teal); }
+    .output-title {
+      font-size: 0.875rem; font-weight: 600;
+      color: var(--dark); margin-bottom: 4px;
+    }
+    .output-sub { font-size: 0.78rem; color: var(--muted); line-height: 1.5; }
+
+    /* ── About strip ────────────────────────────────────────────────────── */
+    .about-section { background: var(--white); }
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 48px;
+      align-items: center;
+    }
+    .about-text p {
+      font-size: 0.95rem; color: var(--mid);
+      line-height: 1.75; margin-bottom: 16px;
+    }
+    .about-text p:last-child { margin-bottom: 0; }
+    .about-pillars { display: flex; flex-direction: column; gap: 12px; }
+    .pillar {
+      display: flex; align-items: flex-start; gap: 14px;
+      background: var(--teal-pale);
+      border-radius: var(--radius); padding: 16px;
+      border-left: 3px solid var(--teal);
+    }
+    .pillar-label { font-size: 0.875rem; font-weight: 600; color: var(--dark); margin-bottom: 2px; }
+    .pillar-sub { font-size: 0.8rem; color: var(--muted); line-height: 1.4; }
+
+    /* ── Footer ─────────────────────────────────────────────────────────── */
+    footer {
+      background: var(--dark);
+      padding: 48px 24px 32px;
+      color: rgba(255,255,255,0.55);
+    }
+    .footer-inner {
+      max-width: var(--max); margin: 0 auto;
+      display: flex; justify-content: space-between; align-items: flex-end;
+      gap: 24px; flex-wrap: wrap;
+    }
+    .footer-brand {
+      font-family: var(--display); font-size: 1.1rem;
+      color: var(--white); margin-bottom: 6px;
+    }
+    .footer-sub { font-size: 0.8rem; line-height: 1.6; }
+    .footer-links { display: flex; gap: 20px; flex-wrap: wrap; }
+    .footer-links a {
+      font-size: 0.8rem; color: rgba(255,255,255,0.5);
+      transition: color 0.15s;
+    }
+    .footer-links a:hover { color: var(--teal-mid); }
+    .footer-rule {
+      border: none; border-top: 1px solid rgba(255,255,255,0.08);
+      margin: 32px auto 0; max-width: var(--max);
+    }
+    .footer-credit {
+      max-width: var(--max); margin: 16px auto 0;
+      padding: 0 24px;
+      font-size: 0.75rem; color: rgba(255,255,255,0.3);
+      display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+    }
+
+    /* ── Responsive ─────────────────────────────────────────────────────── */
+    @media (max-width: 700px) {
+      .projects-grid { grid-template-columns: 1fr; }
+      .about-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .hero { padding: 56px 20px 52px; }
+      .philosophy-inner { flex-direction: column; align-items: flex-start; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition: none !important; animation: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Nav ──────────────────────────────────────────────────────────── -->
+  <nav>
+    <div class="nav-inner">
+      <div class="nav-brand">
+        <span class="dot"></span>
+        BHKi Projects
+      </div>
+      <div class="nav-links">
+        <a href="#projects">Projects</a>
+        <a href="#outputs">Outputs</a>
+        <a href="#about">About</a>
+        <a href="https://github.com/karegapauline/BHKi-projects" target="_blank" rel="noopener">GitHub ↗</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ── Hero ─────────────────────────────────────────────────────────── -->
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="hero-eyebrow">Bioinformatics Hub of Kenya</div>
+      <h1>Research <em>by</em> the community,<br>for the community.</h1>
+      <p class="hero-sub">
+        Open science and bioinformatics projects from BHKi — built to bridge gaps in African research, infrastructure, and capacity.
+      </p>
+      <div class="hero-actions">
+        <a href="#projects" class="btn btn-white">See the projects</a>
+        <a href="https://github.com/karegapauline/BHKi-projects" target="_blank" rel="noopener" class="btn btn-outline">
+          <svg viewBox="0 0 16 16" fill="currentColor" style="width:14px;height:14px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+          View on GitHub
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ── Philosophy strip ─────────────────────────────────────────────── -->
+  <div class="philosophy">
+    <div class="philosophy-inner">
+      <div class="philosophy-mark">"</div>
+      <div class="philosophy-text">
+        We strongly believe in a <strong>by the community, for the community</strong> approach at BHKi — using our model to grow and empower our members through peer learning, mentorship, and real research.
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Projects ─────────────────────────────────────────────────────── -->
+  <section class="section" id="projects">
+    <div class="wrap">
+      <div class="section-header">
+        <div class="section-label">Projects</div>
+        <h2 class="section-title">What we're working on</h2>
+      </div>
+
+      <div class="projects-grid">
+
+        <!-- HPC Co-Design -->
+        <article class="project-card">
+          <div class="card-band band-teal"></div>
+          <div class="card-body">
+            <span class="card-tag">HPC · Infrastructure</span>
+            <span class="card-status status-active">
+              <span class="status-dot"></span> Active
+            </span>
+            <h3 class="card-title">HPC Co-Design for Africa</h3>
+            <p class="card-desc">
+              A Kenya–West Africa co-design study to improve access to and use of high-performance computing for bioinformatics research. Rather than building new infrastructure, this project co-designs the training, governance, and workflows around what already exists — bridging the gap between researchers who don't know what to ask for and administrators who don't know what they're being asked.
+            </p>
+            <div class="card-meta">
+              <span class="meta-item">
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6.5"/><path d="M8 4v4l2.5 2.5"/></svg>
+                2024 – ongoing
+              </span>
+              <span class="meta-item">
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 1.5C5.5 1.5 3.5 3.5 3.5 6c0 3.5 4.5 8.5 4.5 8.5s4.5-5 4.5-8.5c0-2.5-2-4.5-4.5-4.5z"/></svg>
+                Kenya · West Africa
+              </span>
+              <span class="meta-item">
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4h12M2 8h8M2 12h10"/></svg>
+                BHKi lead
+              </span>
+            </div>
+            <div class="card-links">
+              <a href="https://github.com/karegapauline/BHKi-projects/tree/main/HPC_project"
+                 target="_blank" rel="noopener" class="card-link card-link-primary">
+                <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+                Repository
+              </a>
+              <a href="https://github.com/karegapauline/BHKi-projects/blob/main/HPC_project/README.md"
+                 target="_blank" rel="noopener" class="card-link card-link-secondary">
+                Read more →
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- OSS Survey -->
+        <article class="project-card">
+          <div class="card-band band-earth"></div>
+          <div class="card-body">
+            <span class="card-tag earth">Open Science · Survey</span>
+            <span class="card-status status-progress">
+              <span class="status-dot"></span> Report published
+            </span>
+            <h3 class="card-title">Open Source Software Survey</h3>
+            <p class="card-desc">
+              A community survey exploring how researchers across Africa use, contribute to, and are blocked from engaging with open source software in bioinformatics. The findings inform BHKi's training priorities and advocacy work for open science adoption in the region.
+            </p>
+            <div class="card-meta">
+              <span class="meta-item">
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6.5"/><path d="M8 4v4l2.5 2.5"/></svg>
+                2023
+              </span>
+              <span class="meta-item">
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 1.5C5.5 1.5 3.5 3.5 3.5 6c0 3.5 4.5 8.5 4.5 8.5s4.5-5 4.5-8.5c0-2.5-2-4.5-4.5-4.5z"/></svg>
+                East Africa
+              </span>
+              <span class="meta-item">
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4h12M2 8h8M2 12h10"/></svg>
+                BHKi community
+              </span>
+            </div>
+            <div class="card-links">
+              <a href="https://github.com/karegapauline/BHKi-projects/tree/main/OSS-survey_report"
+                 target="_blank" rel="noopener" class="card-link card-link-primary" style="background:var(--earth);">
+                <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+                Repository
+              </a>
+              <a href="https://github.com/karegapauline/BHKi-projects/blob/main/OSS-survey_report/README.md"
+                 target="_blank" rel="noopener" class="card-link card-link-secondary">
+                Read more →
+              </a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Outputs ───────────────────────────────────────────────────────── -->
+  <section class="section outputs-section" id="outputs">
+    <div class="wrap">
+      <div class="section-header">
+        <div class="section-label">Outputs</div>
+        <h2 class="section-title">What we produce</h2>
+      </div>
+      <div class="outputs-grid">
+        <div class="output-item">
+          <div class="output-icon">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 4H5a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M13 2l5 5-5 5M18 7H9"/></svg>
+          </div>
+          <div>
+            <div class="output-title">Lesson plans</div>
+            <div class="output-sub">Carpentries-style lessons co-designed with researchers and HPC administrators</div>
+          </div>
+        </div>
+        <div class="output-item">
+          <div class="output-icon">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="14" height="14" rx="2"/><path d="M7 7h6M7 10h6M7 13h4"/></svg>
+          </div>
+          <div>
+            <div class="output-title">Templates & tools</div>
+            <div class="output-sub">The Computational Resource Management Plan and other shared documents</div>
+          </div>
+        </div>
+        <div class="output-item">
+          <div class="output-icon">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="10" cy="10" r="7.5"/><path d="M10 6v4l3 3"/></svg>
+          </div>
+          <div>
+            <div class="output-title">Open datasets</div>
+            <div class="output-sub">HPC infrastructure inventory and Africa-specific bioinformatics project database</div>
+          </div>
+        </div>
+        <div class="output-item">
+          <div class="output-icon">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 17l4-8 4 4 3-5 3 9"/></svg>
+          </div>
+          <div>
+            <div class="output-title">Survey reports</div>
+            <div class="output-sub">Community research on open source software adoption and barriers across East Africa</div>
+          </div>
+        </div>
+        <div class="output-item">
+          <div class="output-icon">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 2l2.4 7.4H20l-6.2 4.5 2.4 7.4L10 17l-6.2 4.3 2.4-7.4L0 9.4h7.6z"/></svg>
+          </div>
+          <div>
+            <div class="output-title">Peer-reviewed papers</div>
+            <div class="output-sub">Findings submitted to open-access journals where possible</div>
+          </div>
+        </div>
+        <div class="output-item">
+          <div class="output-icon">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 12h-5l-1 5H9l-1-5H3M3 8h14M6 4h8"/></svg>
+          </div>
+          <div>
+            <div class="output-title">Notebooks & code</div>
+            <div class="output-sub">Reproducible Jupyter notebooks for literature mining, mapping, and analysis</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── About ─────────────────────────────────────────────────────────── -->
+  <section class="section about-section" id="about">
+    <div class="wrap">
+      <div class="section-header">
+        <div class="section-label">About BHKi</div>
+        <h2 class="section-title">A grassroots hub for African bioinformatics</h2>
+      </div>
+      <div class="about-grid">
+        <div class="about-text">
+          <p>
+            The Bioinformatics Hub of Kenya initiative (BHKi) is a community of bioinformaticians, data scientists, and life science researchers based in Kenya, working to bridge the gap between well-established and aspiring bioinformaticians through peer training, mentorship, and collaboration.
+          </p>
+          <p>
+            Our projects emerge from real community needs — gaps we see in our own training, our own research, and our own institutions. Everything we build is open, reusable, and designed to be adapted by communities across Africa.
+          </p>
+          <p>
+            <a href="https://bhki-org.vercel.app" target="_blank" rel="noopener" style="color:var(--teal);font-weight:600;">Visit the BHKi website →</a>
+          </p>
+        </div>
+        <div class="about-pillars">
+          <div class="pillar">
+            <div>
+              <div class="pillar-label">Training</div>
+              <div class="pillar-sub">Hands-on workshops, seminars, and lesson development with and for African researchers</div>
+            </div>
+          </div>
+          <div class="pillar">
+            <div>
+              <div class="pillar-label">Peer learning</div>
+              <div class="pillar-sub">Students and researchers at all career stages learning together — not top-down instruction</div>
+            </div>
+          </div>
+          <div class="pillar">
+            <div>
+              <div class="pillar-label">Open science</div>
+              <div class="pillar-sub">Everything we build is open by default — code, data, materials, and methods</div>
+            </div>
+          </div>
+          <div class="pillar">
+            <div>
+              <div class="pillar-label">Outreach</div>
+              <div class="pillar-sub">Taking bioinformatics to undergraduate students at Kenyan universities and across East Africa</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Footer ────────────────────────────────────────────────────────── -->
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <div class="footer-brand">BHKi Projects</div>
+        <div class="footer-sub">
+          Bioinformatics Hub of Kenya initiative<br>
+          Nairobi, Kenya
+        </div>
+      </div>
+      <div class="footer-links">
+        <a href="https://github.com/karegapauline/BHKi-projects" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://bhki-org.vercel.app" target="_blank" rel="noopener">BHKi website</a>
+        <a href="https://github.com/karegapauline/BHKi-projects/blob/main/LICENSE" target="_blank" rel="noopener">MIT Licence</a>
+        <a href="https://github.com/karegapauline/BHKi-projects/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener">Contribute</a>
+      </div>
+    </div>
+    <hr class="footer-rule" />
+    <div class="footer-credit">
+      <span>© 2025 Bioinformatics Hub of Kenya initiative</span>
+      <span>CC BY 4.0 where applicable · Built with GitHub Pages</span>
+    </div>
+  </footer>
+
+</body>
+</html>
