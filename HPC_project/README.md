@@ -68,7 +68,7 @@ A structured short document that travels with a project from initial request thr
 
 An interactive map of known HPC systems in Africa, with metadata on operator, capacity, primary user community, and access model.
 
-→ [`notebooks/02_hpc_mapping.ipynb`](notebooks/02_hpc_mapping.ipynb) | [View map](#) *(link to website/GitHub Pages)*
+→ [`notebooks/02_hpc_mapping.ipynb`](https://github.com/karegapauline/BHKi-projects/blob/main/HPC_project/notebooks/HPC_project.ipynb) 
 
 ---
 
